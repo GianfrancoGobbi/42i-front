@@ -23,3 +23,14 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.locality-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.locality-h2{
+    margin-bottom: -40px;
+}

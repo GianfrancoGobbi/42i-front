@@ -10,13 +10,13 @@ import Mapbox from '../Mapbox/Mapbox';
 
 function Home() {
     let alllocations = useSelector(state => state.locations);
-     // eslint-disable-next-line
-    const [locations, setlocations] = useState([]);
     const [cuentalocality, setcuentalocality] = useState([]);
     const [sur, setSur] = useState([]);
+    // eslint-disable-next-line 
     const [statelocality, setStateLocality] = useState(false);
     const [stateoriginal, setStateoriginal] = useState(false);
     const [statesur, setStatesur] = useState(false);
+    const [localities, setLocalities] = useState([]);
 
     useEffect(() => {
         console.log(alllocations);
@@ -24,16 +24,16 @@ function Home() {
     }, []);
 
     function Changelocations() {
-        setcuentalocality([])
+        // eslint-disable-next-line 
         let newlocations = alllocations.map(location => orderlocation(location))
-        setlocations(newlocations);
         setStateLocality(false);
         setStatesur(false);
         setStateoriginal(true);
+        setLocalities([])
     }
 
     function countlocality() {
-        setlocations([])
+        setLocalities([])
         let newlocations = alllocations.map(location => orderlocation(location)).filter(locality => locality.type === "country" && locality.region.place.locality.neighborhood).map((l) => l.region.place.locality.name)
         let cuenta = contar(newlocations)
         setcuentalocality(cuenta);
@@ -41,6 +41,7 @@ function Home() {
         setStateoriginal(false);
         setStatesur(false);
         console.log(cuenta)
+        setLocalities(alllocations.map(location => orderlocation(location)).filter(locality => locality.type === "country" && locality.region.place.locality))
     }
 
     function surplaces() {
@@ -48,6 +49,7 @@ function Home() {
         setStatesur(true);
         setStateLocality(false);
         setStateoriginal(false)
+        setLocalities([])
     }
 
     return (
@@ -63,9 +65,22 @@ function Home() {
             }
 
             {
-                statelocality && cuentalocality.length > 0 && <h1>{cuentalocality[0].nombre + " " + cuentalocality[0].valor + " neighborhood"} </h1>
+                <div className="Home-maps">
+                    {
+                        localities.map((l, indice) => {
+                            return l.region.place.locality.name === cuentalocality[0].nombre && indice === 0 &&
+                                <div className="locality-container">
+                                    <h2 className="locality-h2">{cuentalocality[0].valor + " neighborhood"} </h2>
+                                    <Mapbox key={l.name} name={l.region.place.locality.name} longitud={l.center.split(":")[1]} latitud={l.center.split(":")[0]} />
+                                </div >
+                        })
+                    }
+                </div>
             }
 
+            {/* // {
+                    //     statelocality && cuentalocality.length > 0 && <h1>{cuentalocality[0].nombre + " " + cuentalocality[0].valor + " neighborhood"} </h1>
+                    // } */}
             {statesur && <div className="Home-maps">
                 {sur.map((l) => <Mapbox key={l.name} name={l.name} longitud={l.center.split(":")[1]} latitud={l.center.split(":")[0]} />)}
             </div>
