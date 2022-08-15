@@ -13,7 +13,7 @@ function Mapbox({latitud,longitud,name}) {
         <div>
             <h3 className="mapbox-title">{name}</h3>
             <Map
-                mapboxAccessToken="pk.eyJ1IjoiZ2lhbmZyYW5jb2dvYmJpIiwiYSI6ImNsNnVlaHI2eDF0cG4zZG9hYWhqYzB0eWEifQ.QRZjqujfZaIjfMM6B8c9Og"
+                mapboxAccessToken="pk.eyJ1IjoiZ2lhbmZyYW5jb2dvYmJpIiwiYSI6ImNsNnVlcGJqNzFxZjkzZG9kZmE3cnRnNncifQ.VVT3kUg1xSB-MrfzaLlgsA"
                 style={{
                     width: "300px",
                     height: "300px",
