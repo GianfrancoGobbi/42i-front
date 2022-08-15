@@ -1,0 +1,13 @@
+.mapbox-title {
+    position: relative;
+    top: 59px;
+    padding: 3px;
+    margin-top: 0;
+    z-index: 1;
+    width: auto;
+    background-color: #fc6966;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
