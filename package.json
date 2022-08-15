@@ -30,9 +30,9 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-"defaults",
+  "browserslist": [
+    "defaults",
     "not ie 11"
     ]
   }
-}
+}   
