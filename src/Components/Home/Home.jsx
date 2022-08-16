@@ -71,16 +71,13 @@ function Home() {
                             return l.region.place.locality.name === cuentalocality[0].nombre && indice === 0 &&
                                 <div className="locality-container">
                                     <h2 className="locality-h2">{cuentalocality[0].valor + " neighborhood"} </h2>
-                                    <Mapbox key={l.name} name={l.region.place.locality.name} longitud={l.center.split(":")[1]} latitud={l.center.split(":")[0]} />
+                                    <Mapbox key={l.name} name={l.region.place.locality.name} longitud={l.region.place.locality.center.split(":")[1]} latitud={l.region.place.locality.center.split(":")[0]} />
                                 </div >
                         })
                     }
                 </div>
             }
 
-            {/* // {
-                    //     statelocality && cuentalocality.length > 0 && <h1>{cuentalocality[0].nombre + " " + cuentalocality[0].valor + " neighborhood"} </h1>
-                    // } */}
             {statesur && <div className="Home-maps">
                 {sur.map((l) => <Mapbox key={l.name} name={l.name} longitud={l.center.split(":")[1]} latitud={l.center.split(":")[0]} />)}
             </div>
